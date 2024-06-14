@@ -1,6 +1,7 @@
 import c from "./Carousel.module.css";
+import { useState } from "react";
 
-const CardComponent = ({title, image, content, tags}) => {
+const CarouselComponent = ({title, image, content, tags}) => {
   return (
     <div className={c.cardWrapper}>
         <div className={c.card}>
@@ -30,4 +31,4 @@ const CardComponent = ({title, image, content, tags}) => {
   );
 };
 
-export default CardComponent;
+export default CarouselComponent;
