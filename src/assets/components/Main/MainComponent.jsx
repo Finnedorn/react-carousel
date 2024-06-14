@@ -30,26 +30,25 @@ const MainComponent = () => {
   // mi resetta la classe di slides left or right dopo 5 milisecondi
   useEffect(() => {
     const timerEffect = setTimeout(() => {
-      console.log("resetto la classe");
       setSlideClass('');
-      rightClick(); 
-    }, 6000);
+    }, 450);
     return () => clearTimeout(timerEffect);
   }, [currentSlide]);
 
-  // setto un timer di autoscorrimento
-  const autoPilot = () => {
-    const timerPilot = setTimeout(() => {
-      console.log("autoPilot");
+  // setto l'autoscorrimento 
+  useEffect(() => {
+    // ogni 6 sec applico la funzione right
+    const timerAutoPilot = setInterval(() => {
       rightClick();
-      autoPilot(); // Richiama se stesso per continuare il ciclo automatico
     }, 6000);
-    useEffect(() => () => clearTimeout(timerPilot), []);
-  };
+
+    return () => clearInterval(timerAutoPilot);
+  }, []); // passando una sola volta l'array vuoto ad useEffect, faccio partire l'autoscorrimento quando la pagina va in mounted avviando di conseguenza l'autoplay
+
 
   return (
     <main
-      className="container-fluid"
+      className="container-fluid main"
       style={{
         backgroundColor: "gray",
         padding: "20px",

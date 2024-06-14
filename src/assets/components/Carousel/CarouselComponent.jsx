@@ -1,5 +1,4 @@
 import c from "./Carousel.module.css";
-import { useState } from "react";
 
 const CarouselComponent = ({title, image, content, tags}) => {
   return (

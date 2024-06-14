@@ -10,6 +10,14 @@ img {
   vertical-align: middle;
 }
 
+.App {
+  height: 100vh;
+}
+
+.main {
+  height: calc(100vh - 100px);
+}
+
 .tag {
   &.html {
     background-color: rgb(104, 255, 104);
