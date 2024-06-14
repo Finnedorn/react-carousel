@@ -14,24 +14,38 @@ const MainComponent = () => {
   const [slideClass, setSlideClass] = useState("");
   
     // se clicco su left applico la classe con l'animazione e imposto l'indice di post all'elemento successivo
-  const leftClick = () => {
-    console.log(currentSlide);
+    const leftClick = () => {
     setSlideClass("left");
     setCurrentSlide(currentSlide => currentSlide === 0 ? totalSlides - 1 : currentSlide - 1);
   };
   
   // right
   const rightClick = () => {
-    console.log(currentSlide);
     setSlideClass("right");
     setCurrentSlide(currentSlide => currentSlide === totalSlides - 1 ? 0 : currentSlide + 1);
   };
   
-  // setto un timer che mi resetta la classe di slides left or right dopo 5 milisecondi
+  // setto un timer che si innesca col cambiamento della currentSlide
+  // ovvero quando si innescano le funzioni di right e left
+  // mi resetta la classe di slides left or right dopo 5 milisecondi
   useEffect(() => {
-    const timer = setTimeout(() => setSlideClass(''), 500);
-    return () => clearTimeout(timer);
-  }, [slideClass]);
+    const timerEffect = setTimeout(() => {
+      console.log("resetto la classe");
+      setSlideClass('');
+      rightClick(); 
+    }, 6000);
+    return () => clearTimeout(timerEffect);
+  }, [currentSlide]);
+
+  // setto un timer di autoscorrimento
+  const autoPilot = () => {
+    const timerPilot = setTimeout(() => {
+      console.log("autoPilot");
+      rightClick();
+      autoPilot(); // Richiama se stesso per continuare il ciclo automatico
+    }, 6000);
+    useEffect(() => () => clearTimeout(timerPilot), []);
+  };
 
   return (
     <main
@@ -68,9 +82,8 @@ const MainComponent = () => {
           <Arrowright/>
         </div>
       </div>
-      <div className="container d-flex justify-content-center align-items-center">
+      <div className="container d-flex justify-content-center align-items-center pt-3 mb-5">
         {Array.from({ length: totalSlides }).map((el,index) => (
-          console.log(index),
           <div 
           key={index} 
           className={currentSlide === index ? "bullet selected" : "bullet"} 

@@ -89,6 +89,12 @@ img {
   transition: all 0.3s ease-in-out;
   margin: 0 10px;
 
+  &:hover {
+    background-color: #ffff;
+    transition: all 0.3s ease-in-out;
+    scale: 1.5;
+  }
+
   &.selected {
     scale: 1.5;
     transition: all 0.3s ease-in-out;

@@ -6,7 +6,12 @@ const CarouselComponent = ({title, image, content, tags}) => {
     <div className={c.cardWrapper}>
         <div className={c.card}>
             <div className={c.cardImg}>
-                {image === '' && <img src="https://placehold.co/600x400" alt={`immagine di ${title}`}/>}
+                {
+                image ? 
+                <img src={image} alt={`immagine di ${title}`}/>
+                 : 
+                <img src="https://placehold.co/600x400" alt={`immagine di ${title}`}/>
+                }
             </div>
             <div className={c.cardBody}>
                 <h2 className={c.cardTitle}>
